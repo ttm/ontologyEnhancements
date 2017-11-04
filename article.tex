@@ -21,6 +21,7 @@
 	allbordercolors=black,
 	bookmarksdepth=4
 }
+\newcommand{\URL}[1]{\url{\detokenize{#1}}}
 \usepackage{tocloft}
 \titleformat{\section}
   {\normalfont\bfseries}{\thesection.}{0.5em}{}
@@ -107,14 +108,14 @@ objects and concepts.
 It is also part of the framework to use URIs that are URLs whenever possible,
 to enable the data linkage.
 Accordingly, one can write:
-\begin{Verbatim}[fontsize=\footnotesize]
-<http://example.org/people/mary>
-	<http://example.org/properties/name> "Mary Shastacian" .
-<http://example.org/people/mary>
-	<http://example.org/properties/age> "57" .
-<http://example.org/people/mary> 
-	<http://example.org/properties/likes> 
-                <http://example.org/concepts/reading> .
+\begin{Verbatim}[fontsize=\footnotesize,commandchars=\\\{\}]
+<\URL{http://example.org/people/mary}>
+	<\URL{http://example.org/properties/name}> "Mary Shastacian" .
+<\URL{http://example.org/people/mary}>
+	<\URL{http://example.org/properties/age}> "57" .
+<\URL{http://example.org/people/mary}> 
+	<\URL{http://example.org/properties/likes}> 
+		<\URL{http://example.org/concepts/reading}> .
 \end{Verbatim}
 \noindent to express that there is person called Mary Shastacian which is 57 years old and likes reading.
 There are many formats to write/serialize RDF data.
@@ -240,7 +241,7 @@ This might be the most complex issue tackled in this document.
 As the problems stated in the previous section are distinct,
 the proposed enhancements are described case-by-case.
 
-\subsection{Potential domain, range, predicate and post predicate}
+\subsection{Potential domain, range, predicate and post predicate}\label{pot}
 To address the problem described in Section~\ref{sec:rel},
 I propose creating a new set of properties:
 \begin{itemize}
@@ -297,6 +298,39 @@ discern different types of relations.
 We should recall here that in OWL a property might be specified to
 satisfy a number of axioms, which are also prone to be represented
 with these same artifices.
+
+A reasonable choice for most cases, which I've been practicing,
+and found in literature but not consistently,
+is:
+\begin{itemize}
+    \item Empty arrow heads depict hypernimny: \texttt{Class->superClass}.
+    \item Filled arrow heads depict property relations.
+        Here the problem related to Sections~\ref{sec:rel} and~\ref{pot} become very clear:
+        potential property relations are often depicted in these diagrams which are not
+        defined by range or domain, property axioms or class restrictions.
+        Priority should lie on the shape of arrow head and tail for depicting different characteristics
+        of the properties. After that, shape of the edge and then color.
+    \item Nodes have distinct colors datatypes and classes, e.g. orange and green.
+    \item A legend for relating arrows and nodes to RDF namespace, e.g.
+        \texttt{owl:(Class,ExistentialRestriction,UniversalRestriction,ObjectProperty,DataProperty,FuctionalProperty)}, \texttt{xls:dataytype}.
+\end{itemize}
+
+One more elaborate template I've been used, and recommend at least for reference, is:
+\begin{itemize}
+    \item All arrows with a standard shape are potential relations
+        in the sense exposed in Section~\ref{pot}.
+    \item Universal restrictions have inverted arrowheads.
+    \item If there are existential restrictions and potential relations,
+        differ the arrow heads (shape and size).
+    \item Non-functional properties have dashed lines.
+    \item Colors are consistent with nodes:
+        Data properties and data nodes have (possibly different)
+        shades of orange.
+        Objects and object properties have (possibly different)
+        shades of green.
+    \item Redundancy: Universal and existential restrictions might
+        have different greens and arrowheads.
+\end{itemize}
 
 \subsection{OWL class as subclass of SKOS concept}\label{owlSkos}
 There are different

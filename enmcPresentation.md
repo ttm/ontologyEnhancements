@@ -2,7 +2,7 @@
 
 
 #title:
-Enhancements Of Linked Data Expressiveness For Ontologies
+Enhancements of linked data expressiveness for ontologies
 
 #authors:
 Renato Fabbri
@@ -74,9 +74,16 @@ renato.fabbri@gmail.com
 
 * no scale of relevance
 
-* lausy diagrams
+* lousy diagrams
 
 * OWL <=> SKOS
+
+
+
+
+
+
+
 
 
 
@@ -89,13 +96,23 @@ renato.fabbri@gmail.com
 *Proposals / candidate solutions*
 
 * properties for potential relations
+  - ex:potential(Range, Domain, Predicate, PostPredicate)
 
 * a property for ascribing a scalar value
 for how fundamental is the concept
+  - ex:fundamental
 
 * different arrow heads and tails
+  - not line styles, not color
 
 * OWL class as subclass of SKOS concept
+  - or express OWL and translate into SKOS
+  - not: 
+    * skos:Concept instance an OWL class
+    * annotations on OWL classes
+    * less formal ontology
+    * extrapolate SKOS
+  
 
 
 
@@ -117,13 +134,14 @@ for how fundamental is the concept
 These issues are now at least documented
 and favors one to understand or propose solutions.
 
+Potential next steps:
 * Use these proposals
 
 * Develop the visualization protocol
 
 * Seeking for the URIs
 
-* Confirmation the the OWL <=> SKOS
+* Confirmation that the OWL <=> SKOS
 design is sound
 
 thanks: FAPESP, ICMC/USP, ENMC2017
